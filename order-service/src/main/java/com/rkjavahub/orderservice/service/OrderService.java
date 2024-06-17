@@ -1,5 +1,6 @@
 package com.rkjavahub.orderservice.service;
 
+import com.rkjavahub.orderservice.dto.InventoryResponse;
 import com.rkjavahub.orderservice.dto.OrderLineIteamsDTO;
 import com.rkjavahub.orderservice.dto.OrderRequest;
 import com.rkjavahub.orderservice.model.Order;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,10 +34,13 @@ public class OrderService {
         List<String> skuCodes = orderLineIteams.stream().map(OrderLineIteams::getSkuCode).toList();
 
         // check inventory before placing an order
-        webClient.get().uri("http://localhost:8082/api/inventory", uriBuilder -> uriBuilder.queryParam("skuCodes", skuCodes).build());
+        InventoryResponse[] inventoryResponses = webClient.get().uri("http://localhost:8082/api/inventory", uriBuilder -> uriBuilder.queryParam("skuCodes", skuCodes).build()).retrieve().bodyToMono(InventoryResponse[].class).block();
 
-
-        orderRepository.save(order);
+        if (Arrays.stream(inventoryResponses).allMatch(InventoryResponse::isInStock)) {
+            orderRepository.save(order);
+        } else {
+            throw new IllegalArgumentException("Product is not available in stock, please try again later");
+        }
     }
 
     private OrderLineIteams mapToOrderDTO(OrderLineIteamsDTO orderLineIteamsDTO) {
