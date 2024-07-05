@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a050ba4e-ec19-49b5-a9d2-3fee01e2d6ca" name="Changes" comment="Added">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/dto/InventoryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/dto/InventoryResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/service/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/service/InventoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/dto/InventoryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/dto/InventoryResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/model/OrderLineIteams.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/model/OrderLineIteams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +62,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/JAVA/rk-javahub GitHub/Leetcode",
+    "last_opened_file_path": "F:/JAVA/rk-javahub GitHub/amazon-microservice",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -127,6 +124,19 @@
       <option name="PACKAGE_NAME" value="com.rkjavahub.productservice" />
       <option name="MAIN_CLASS_NAME" value="com.rkjavahub.productservice.ProductServiceApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="order-service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="order-service" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
