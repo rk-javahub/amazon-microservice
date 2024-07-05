@@ -1,10 +1,12 @@
 package com.rkjavahub.orderservice.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class InventoryResponse {
     private String skuCode;
     private boolean isInStock;
