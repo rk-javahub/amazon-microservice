@@ -24,7 +24,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     public void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -38,7 +38,7 @@ public class OrderService {
         List<String> skuCodes = orderLineIteams.stream().map(OrderLineIteams::getSkuCode).toList();
 
         // Call inventory service and check inventory for profuct is in stock before placing an order
-        InventoryResponse[] inventoryResponses = webClient.get()
+        InventoryResponse[] inventoryResponses = webClientBuilder.build().get()
                 .uri("http://inventory-service/api/inventory", uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
