@@ -4,6 +4,7 @@ import com.rkjavahub.productservice.dto.ProductRequest;
 import com.rkjavahub.productservice.dto.ProductResponse;
 import com.rkjavahub.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
+    @LoadBalanced
     private List<ProductResponse> getAllProducts() {
         return productService.getAllProducts();
     }
