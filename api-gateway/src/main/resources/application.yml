@@ -36,6 +36,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8180/realms/spring-boot-microservices
+          jwk-set-uri: http://localhost:8180/realms/spring-boot-microservices/protocol/openid-connect/certs
 
 
 
