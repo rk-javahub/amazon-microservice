@@ -24,6 +24,24 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/microservices-security" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="microservices-security" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -117,7 +135,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DiscoveryServerApp">
+  <component name="RunManager" selected="Application.ApiGatewayApplication">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.rkjavahub.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -248,11 +266,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApiGatewayApplication" />
-        <item itemvalue="Application.DiscoveryServerApp" />
-        <item itemvalue="Application.InventoryServiceApplication" />
-        <item itemvalue="Application.OrderServiceApplication" />
         <item itemvalue="Application.ProductServiceApplication" />
+        <item itemvalue="Application.OrderServiceApplication" />
+        <item itemvalue="Application.InventoryServiceApplication" />
+        <item itemvalue="Application.DiscoveryServerApp" />
+        <item itemvalue="Application.ApiGatewayApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -274,7 +292,9 @@
       <updated>1717823040960</updated>
       <workItem from="1725080450731" duration="1569000" />
       <workItem from="1725709424315" duration="21895000" />
-      <workItem from="1725876816624" duration="3528000" />
+      <workItem from="1725876816624" duration="5693000" />
+      <workItem from="1725942954649" duration="11094000" />
+      <workItem from="1726024525289" duration="2645000" />
     </task>
     <task id="LOCAL-00001" summary="New project">
       <option name="closed" value="true" />
