@@ -7,6 +7,10 @@
     <list default="true" id="a050ba4e-ec19-49b5-a9d2-3fee01e2d6ca" name="Changes" comment="Added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +43,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="microservices-security" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,7 +58,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/rk-javahub/amazon-microservice.git&quot;,
-    &quot;accountId&quot;: &quot;e83de130-ba02-48c0-899c-92b91ea35c71&quot;
+    &quot;accountId&quot;: &quot;10a41537-8648-4fc4-963c-dd95af448241&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -98,9 +102,14 @@
     "Maven.product-service [compile].executor": "Run",
     "Maven.product-service [install].executor": "Run",
     "Maven.product-service [verify].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "Spring Boot.DiscoveryServerApp.executor": "Run",
+    "git-widget-placeholder": "microservices-security",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "F:/JAVA/rk-javahub GitHub/core-java",
     "node.js.detected.package.eslint": "true",
@@ -135,7 +144,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ApiGatewayApplication">
+  <component name="RunManager" selected="Spring Boot.DiscoveryServerApp">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.rkjavahub.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -267,10 +276,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ProductServiceApplication" />
-        <item itemvalue="Application.OrderServiceApplication" />
-        <item itemvalue="Application.InventoryServiceApplication" />
         <item itemvalue="Application.DiscoveryServerApp" />
         <item itemvalue="Application.ApiGatewayApplication" />
+        <item itemvalue="Application.OrderServiceApplication" />
+        <item itemvalue="Application.InventoryServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -295,6 +304,8 @@
       <workItem from="1725876816624" duration="5693000" />
       <workItem from="1725942954649" duration="11094000" />
       <workItem from="1726024525289" duration="2645000" />
+      <workItem from="1726052922577" duration="1250000" />
+      <workItem from="1726124222857" duration="1812000" />
     </task>
     <task id="LOCAL-00001" summary="New project">
       <option name="closed" value="true" />
@@ -336,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718032074381</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added">
+      <option name="closed" value="true" />
+      <created>1726047749826</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726047749826</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +366,8 @@
     <MESSAGE value="Added code" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Inventory Service response updated to List from boolean" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inventory Service response updated to List from boolean" />
+    <MESSAGE value="Added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

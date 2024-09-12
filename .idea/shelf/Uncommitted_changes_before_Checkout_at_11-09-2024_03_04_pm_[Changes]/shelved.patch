@@ -1,0 +1,273 @@
+Index: discovery-server/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    name: discovery-server\r\n\r\neureka:\r\n  instance:\r\n    hostname: localhost\r\n\r\n  client:\r\n    register-with-eureka: false\r\n    fetch-registry: false\r\n    service-url:\r\n      defaultZone: http://localhost:8761/eureka/\r\n\r\nserver:\r\n  port: 8761
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/discovery-server/src/main/resources/application.yml b/discovery-server/src/main/resources/application.yml
+--- a/discovery-server/src/main/resources/application.yml	(revision ddbbf090698412fca1b7a7cdece9591419c7e5f5)
++++ b/discovery-server/src/main/resources/application.yml	(date 1726045384384)
+@@ -10,7 +10,11 @@
+     register-with-eureka: false
+     fetch-registry: false
+     service-url:
+-      defaultZone: http://localhost:8761/eureka/
++      defaultZone: http://localhost:8761/eureka
++
++eur:
++  username: ${EUREKA_USERNAME:eureka}
++  password: ${EUREKA_PASSWORD:password}
+ 
+ server:
+-  port: 8761
+\ No newline at end of file
++  port: 8761
+Index: product-service/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    name: product-service\r\n\r\n  data:\r\n    mongodb:\r\n      uri: mongodb://localhost:27017/product-service\r\n\r\nserver:\r\n  port: 0\r\n\r\neureka:\r\n  client:\r\n    service-url:\r\n      defaultZone: http://localhost:8761/eureka/\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/product-service/src/main/resources/application.yml b/product-service/src/main/resources/application.yml
+--- a/product-service/src/main/resources/application.yml	(revision ddbbf090698412fca1b7a7cdece9591419c7e5f5)
++++ b/product-service/src/main/resources/application.yml	(date 1726047271854)
+@@ -12,4 +12,5 @@
+ eureka:
+   client:
+     service-url:
+-      defaultZone: http://localhost:8761/eureka/
++      defaultZone: http://eureka:password@localhost:8761/eureka
++
+Index: order-service/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    name: order-service\r\n\r\n  datasource:\r\n    url: jdbc:mysql://localhost:3306/order-service\r\n    username: root\r\n    password: xuv500\r\n    driver-class-name: com.mysql.cj.jdbc.Driver\r\n\r\n  jpa:\r\n    show-sql: true\r\n    database: MYSQL\r\n    hibernate:\r\n      ddl-auto: update\r\n\r\nserver:\r\n  port: 0\r\n\r\neureka:\r\n  client:\r\n    service-url:\r\n      defaultZone: http://localhost:8761/eureka/\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/order-service/src/main/resources/application.yml b/order-service/src/main/resources/application.yml
+--- a/order-service/src/main/resources/application.yml	(revision ddbbf090698412fca1b7a7cdece9591419c7e5f5)
++++ b/order-service/src/main/resources/application.yml	(date 1726046522426)
+@@ -20,7 +20,7 @@
+ eureka:
+   client:
+     service-url:
+-      defaultZone: http://localhost:8761/eureka/
++      defaultZone: http://eureka:password@localhost:8761/eureka
+ 
+ 
+ 
+Index: discovery-server/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n    <parent>\r\n        <groupId>com.rkjavahub</groupId>\r\n        <artifactId>amazon-microservices</artifactId>\r\n        <version>1.0-SNAPSHOT</version>\r\n    </parent>\r\n\r\n    <artifactId>discovery-server</artifactId>\r\n\r\n    <properties>\r\n        <maven.compiler.source>17</maven.compiler.source>\r\n        <maven.compiler.target>17</maven.compiler.target>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.springframework.cloud</groupId>\r\n            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-devtools</artifactId>\r\n            <scope>runtime</scope>\r\n            <optional>true</optional>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/discovery-server/pom.xml b/discovery-server/pom.xml
+--- a/discovery-server/pom.xml	(revision ddbbf090698412fca1b7a7cdece9591419c7e5f5)
++++ b/discovery-server/pom.xml	(date 1726030308402)
+@@ -19,6 +19,10 @@
+ 
+     <dependencies>
+         <dependency>
++            <groupId>org.springframework.boot</groupId>
++            <artifactId>spring-boot-starter-security</artifactId>
++        </dependency>
++        <dependency>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+         </dependency>
+Index: inventory-service/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    name: inventory-service\r\n\r\n  datasource:\r\n    url: jdbc:mysql://localhost:3306/inventory-service\r\n    username: root\r\n    password: xuv500\r\n\r\n  jpa:\r\n    show-sql: true\r\n    database: MYSQL\r\n    hibernate:\r\n      ddl-auto: create-drop\r\n\r\nserver:\r\n  port: 0\r\n\r\neureka:\r\n  client:\r\n    service-url:\r\n      defaultZone: http://localhost:8761/eureka/\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/inventory-service/src/main/resources/application.yml b/inventory-service/src/main/resources/application.yml
+--- a/inventory-service/src/main/resources/application.yml	(revision ddbbf090698412fca1b7a7cdece9591419c7e5f5)
++++ b/inventory-service/src/main/resources/application.yml	(date 1726046522420)
+@@ -19,7 +19,7 @@
+ eureka:
+   client:
+     service-url:
+-      defaultZone: http://localhost:8761/eureka/
++      defaultZone: http://eureka:password@localhost:8761/eureka
+ 
+ 
+ 
+Index: api-gateway/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server:\r\n  port: 8080\r\n\r\nspring:\r\n  application:\r\n    name: api-gateway\r\n  cloud:\r\n    discovery:\r\n      enabled: true\r\n    gateway:\r\n      discovery:\r\n        locator:\r\n          enabled: true\r\n          lower-case-service-id: true\r\n      routes:\r\n        - id: product-service\r\n          uri: lb://product-service\r\n          predicates:\r\n            - Path=/api/product\r\n        - id: order-service\r\n          uri: lb://order-service\r\n          predicates:\r\n            - Path=/api/order\r\n        - id: inventory-service\r\n          uri: lb://inventory-service\r\n          predicates:\r\n            - Path=/api/inventory\r\n        - id: discovery-server\r\n          uri: http://localhost:8761/\r\n          predicates:\r\n            - Path=/eureka/web\r\n          filters: SetPath=/\r\n        - id: discovery-server-static\r\n          uri: http://localhost:8761/\r\n          predicates:\r\n            - Path=/eureka/**\r\n\r\n  security:\r\n    oauth2:\r\n      resourceserver:\r\n        jwt:\r\n          issuer-uri: http://localhost:8180/realms/spring-boot-microservices\r\n          jwk-set-uri: http://localhost:8180/realms/spring-boot-microservices/protocol/openid-connect/certs\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/api-gateway/src/main/resources/application.yml b/api-gateway/src/main/resources/application.yml
+--- a/api-gateway/src/main/resources/application.yml	(revision ddbbf090698412fca1b7a7cdece9591419c7e5f5)
++++ b/api-gateway/src/main/resources/application.yml	(date 1726046467698)
+@@ -42,6 +42,10 @@
+           issuer-uri: http://localhost:8180/realms/spring-boot-microservices
+           jwk-set-uri: http://localhost:8180/realms/spring-boot-microservices/protocol/openid-connect/certs
+ 
++eureka:
++  client:
++    service-url:
++      defaultZone: http://eureka:password@localhost:8761/eureka
+ 
+ 
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a050ba4e-ec19-49b5-a9d2-3fee01e2d6ca\" name=\"Changes\" comment=\"Added\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/api-gateway/src/main/resources/application.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/api-gateway/src/main/resources/application.yml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CompilerWorkspaceConfiguration\">\r\n    <option name=\"MAKE_PROJECT_ON_SAVE\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"REMOTE\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"origin/microservices-security\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"microservices-security\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;rk-javahub&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/rk-javahub/amazon-microservice.git&quot;,\r\n    &quot;accountId&quot;: &quot;e83de130-ba02-48c0-899c-92b91ea35c71&quot;\r\n  }\r\n}</component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/6.1.8/spring-web-6.1.8-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java\" root0=\"SKIP_INSPECTION\" />\r\n  </component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"DEPENDENCY_CHECKER_PROBLEMS_TAB\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2haCwUcgaUBG26BpvIGK2L6tNjv\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.ApiGatewayApplication.executor\": \"Run\",\r\n    \"Application.DiscoveryServerApp.executor\": \"Run\",\r\n    \"Application.InventoryServiceApplication.executor\": \"Run\",\r\n    \"Application.OrderServiceApplication.executor\": \"Run\",\r\n    \"Application.ProductServiceApplication.executor\": \"Run\",\r\n    \"JUnit.ProductServiceApplicationTests.executor\": \"Run\",\r\n    \"Maven.amazon-microservices [clean].executor\": \"Run\",\r\n    \"Maven.amazon-microservices [compile].executor\": \"Run\",\r\n    \"Maven.amazon-microservices [install].executor\": \"Run\",\r\n    \"Maven.amazon-microservices [validate].executor\": \"Run\",\r\n    \"Maven.amazon-microservices [verify].executor\": \"Run\",\r\n    \"Maven.api-gateway [clean].executor\": \"Run\",\r\n    \"Maven.api-gateway [compile].executor\": \"Run\",\r\n    \"Maven.api-gateway [install].executor\": \"Run\",\r\n    \"Maven.order-service [clean].executor\": \"Run\",\r\n    \"Maven.order-service [install].executor\": \"Run\",\r\n    \"Maven.product-service [clean].executor\": \"Run\",\r\n    \"Maven.product-service [compile].executor\": \"Run\",\r\n    \"Maven.product-service [install].executor\": \"Run\",\r\n    \"Maven.product-service [verify].executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"F:/JAVA/rk-javahub GitHub/core-java\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"run.configurations.included.in.services\": \"true\",\r\n    \"settings.editor.selected.configurable\": \"project.propCompiler\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"F:\\JAVA\\rk-javahub GitHub\\amazon-microservice\" />\r\n      <recent name=\"F:\\JAVA\\rk-javahub GitHub\\amazon-microservice\\api-gateway\\src\\main\\resources\" />\r\n      <recent name=\"F:\\JAVA\\rk-javahub GitHub\\amazon-microservice\\discovery-server\\src\\main\\resources\" />\r\n      <recent name=\"F:\\JAVA\\rk-javahub GitHub\\amazon-microservices\\order-service\" />\r\n      <recent name=\"F:\\JAVA\\rk-javahub GitHub\\amazon-microservices\\product-service\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"F:\\JAVA\\rk-javahub GitHub\\amazon-microservice\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunDashboard\">\r\n    <option name=\"configurationTypes\">\r\n      <set>\r\n        <option value=\"Application\" />\r\n        <option value=\"CompoundRunConfigurationType\" />\r\n        <option value=\"Java Scratch\" />\r\n        <option value=\"MavenRunConfiguration\" />\r\n      </set>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.ApiGatewayApplication\">\r\n    <configuration name=\"ApiGatewayApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.rkjavahub.ApiGatewayApplication\" />\r\n      <module name=\"api-gateway\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.rkjavahub.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"DiscoveryServerApp\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.rkjavahub.discoveryserver.DiscoveryServerApp\" />\r\n      <module name=\"discovery-server\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.rkjavahub.discoveryserver.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"InventoryServiceApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.rkjavahub.inventoryservice.InventoryServiceApplication\" />\r\n      <module name=\"inventory-service\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.rkjavahub.inventoryservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"OrderServiceApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.rkjavahub.orderservice.OrderServiceApplication\" />\r\n      <module name=\"order-service\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.rkjavahub.orderservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ProductServiceApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.rkjavahub.productservice.ProductServiceApplication\" />\r\n      <module name=\"product-service\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.rkjavahub.productservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"order-service\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"order-service\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ApiGatewayApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"api-gateway\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.rkjavahub.ApiGatewayApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"DiscoveryServerApp\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"discovery-server\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.rkjavahub.discoveryserver.DiscoveryServerApp\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"InventoryServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"inventory-service\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.rkjavahub.inventoryservice.InventoryServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"OrderServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"order-service\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.rkjavahub.orderservice.OrderServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ProductServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"product-service\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.rkjavahub.productservice.ProductServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.ApiGatewayApplication\" />\r\n      <item itemvalue=\"Application.DiscoveryServerApp\" />\r\n      <item itemvalue=\"Application.InventoryServiceApplication\" />\r\n      <item itemvalue=\"Application.OrderServiceApplication\" />\r\n      <item itemvalue=\"Application.ProductServiceApplication\" />\r\n      <item itemvalue=\"Spring Boot.ApiGatewayApplication\" />\r\n      <item itemvalue=\"Spring Boot.DiscoveryServerApp\" />\r\n      <item itemvalue=\"Spring Boot.InventoryServiceApplication\" />\r\n      <item itemvalue=\"Spring Boot.OrderServiceApplication\" />\r\n      <item itemvalue=\"Spring Boot.ProductServiceApplication\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.ProductServiceApplication\" />\r\n        <item itemvalue=\"Application.OrderServiceApplication\" />\r\n        <item itemvalue=\"Application.InventoryServiceApplication\" />\r\n        <item itemvalue=\"Application.DiscoveryServerApp\" />\r\n        <item itemvalue=\"Application.ApiGatewayApplication\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a050ba4e-ec19-49b5-a9d2-3fee01e2d6ca\" name=\"Changes\" comment=\"\" />\r\n      <created>1717823040960</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1717823040960</updated>\r\n      <workItem from=\"1725080450731\" duration=\"1569000\" />\r\n      <workItem from=\"1725709424315\" duration=\"21895000\" />\r\n      <workItem from=\"1725876816624\" duration=\"5693000\" />\r\n      <workItem from=\"1725942954649\" duration=\"11094000\" />\r\n      <workItem from=\"1726024525289\" duration=\"2645000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"New project\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717823384829</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717823384829</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Added code\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717831472168</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717831472168</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Added code\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717832953466</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717832953466</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Refactoring\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717833231048</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717833231048</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Inventory Service response updated to List from boolean\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1718032074381</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1718032074381</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"New project\" />\r\n    <MESSAGE value=\"Added code\" />\r\n    <MESSAGE value=\"Refactoring\" />\r\n    <MESSAGE value=\"Inventory Service response updated to List from boolean\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Inventory Service response updated to List from boolean\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>\r\n          <line>56</line>\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>\r\n          <line>61</line>\r\n          <option name=\"timeStamp\" value=\"4\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>\r\n          <line>40</line>\r\n          <properties>\r\n            <option name=\"lambda-ordinal\" value=\"-1\" />\r\n          </properties>\r\n          <option name=\"timeStamp\" value=\"5\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>\r\n          <line>48</line>\r\n          <option name=\"timeStamp\" value=\"6\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>\r\n          <line>49</line>\r\n          <option name=\"timeStamp\" value=\"7\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>\r\n          <line>54</line>\r\n          <option name=\"timeStamp\" value=\"8\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/controller/InventoryController.java</url>\r\n          <line>23</line>\r\n          <option name=\"timeStamp\" value=\"9\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/inventory-service/src/main/java/com/rkjavahub/inventoryservice/service/InventoryService.java</url>\r\n          <line>20</line>\r\n          <option name=\"timeStamp\" value=\"10\" />\r\n        </line-breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"com.netflix.discovery.shared.transport.TransportException\" package=\"com.netflix.discovery.shared.transport\" />\r\n          <option name=\"timeStamp\" value=\"11\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ddbbf090698412fca1b7a7cdece9591419c7e5f5)
++++ b/.idea/workspace.xml	(date 1726047272101)
+@@ -5,8 +5,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a050ba4e-ec19-49b5-a9d2-3fee01e2d6ca" name="Changes" comment="Added">
++      <change afterPath="$PROJECT_DIR$/discovery-server/src/main/java/com/rkjavahub/config/SecurityConfig.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/discovery-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/discovery-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/src/main/resources/application.yml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/application.yml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/product-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.yml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -98,8 +104,14 @@
+     "Maven.product-service [compile].executor": "Run",
+     "Maven.product-service [install].executor": "Run",
+     "Maven.product-service [verify].executor": "Run",
++    "RequestMappingsPanelOrder0": "0",
++    "RequestMappingsPanelOrder1": "1",
++    "RequestMappingsPanelWidth0": "75",
++    "RequestMappingsPanelWidth1": "75",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "Spring Boot.DiscoveryServerApp.executor": "Run",
++    "Spring Boot.ProductServiceApplication.executor": "Run",
+     "git-widget-placeholder": "master",
+     "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "F:/JAVA/rk-javahub GitHub/core-java",
+@@ -135,26 +147,13 @@
+       </set>
+     </option>
+   </component>
+-  <component name="RunManager" selected="Application.ApiGatewayApplication">
++  <component name="RunManager" selected="Spring Boot.ProductServiceApplication">
+     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="com.rkjavahub.ApiGatewayApplication" />
+       <module name="api-gateway" />
+       <extension name="coverage">
+         <pattern>
+           <option name="PATTERN" value="com.rkjavahub.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="DiscoveryServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="com.rkjavahub.discoveryserver.DiscoveryServerApp" />
+-      <module name="discovery-server" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="com.rkjavahub.discoveryserver.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -254,7 +253,6 @@
+     </configuration>
+     <list>
+       <item itemvalue="Application.ApiGatewayApplication" />
+-      <item itemvalue="Application.DiscoveryServerApp" />
+       <item itemvalue="Application.InventoryServiceApplication" />
+       <item itemvalue="Application.OrderServiceApplication" />
+       <item itemvalue="Application.ProductServiceApplication" />
+@@ -266,11 +264,10 @@
+     </list>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.ApiGatewayApplication" />
+         <item itemvalue="Application.ProductServiceApplication" />
+-        <item itemvalue="Application.OrderServiceApplication" />
+         <item itemvalue="Application.InventoryServiceApplication" />
+-        <item itemvalue="Application.DiscoveryServerApp" />
+-        <item itemvalue="Application.ApiGatewayApplication" />
++        <item itemvalue="Application.OrderServiceApplication" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -294,7 +291,7 @@
+       <workItem from="1725709424315" duration="21895000" />
+       <workItem from="1725876816624" duration="5693000" />
+       <workItem from="1725942954649" duration="11094000" />
+-      <workItem from="1726024525289" duration="2645000" />
++      <workItem from="1726024525289" duration="15229000" />
+     </task>
+     <task id="LOCAL-00001" summary="New project">
+       <option name="closed" value="true" />
+Index: discovery-server/src/main/java/com/rkjavahub/config/SecurityConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/discovery-server/src/main/java/com/rkjavahub/config/SecurityConfig.java b/discovery-server/src/main/java/com/rkjavahub/config/SecurityConfig.java
+new file mode 100644
+--- /dev/null	(date 1726045384395)
++++ b/discovery-server/src/main/java/com/rkjavahub/config/SecurityConfig.java	(date 1726045384395)
+@@ -0,0 +1,42 @@
++package com.rkjavahub.config;
++
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.security.config.Customizer;
++import org.springframework.security.config.annotation.web.builders.HttpSecurity;
++import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
++import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
++import org.springframework.security.core.userdetails.User;
++import org.springframework.security.core.userdetails.UserDetailsService;
++import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
++import org.springframework.security.crypto.password.PasswordEncoder;
++import org.springframework.security.provisioning.InMemoryUserDetailsManager;
++import org.springframework.security.web.SecurityFilterChain;
++
++@Configuration
++@EnableWebSecurity
++public class SecurityConfig {
++    @Value("${eur.password}")
++    String password;
++    @Value("${eur.username}")
++    private String username;
++
++    @Bean
++    public UserDetailsService userDetailsService() {
++        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
++        manager.createUser(User.withUsername(username).password(passwordEncoder().encode(password)).roles("USER").build());
++        return manager;
++    }
++
++    @Bean
++    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
++        return http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry.anyRequest().authenticated()).httpBasic(Customizer.withDefaults()).build();
++    }
++
++    @Bean
++    public PasswordEncoder passwordEncoder() {
++        return new BCryptPasswordEncoder();
++    }
++
++}
