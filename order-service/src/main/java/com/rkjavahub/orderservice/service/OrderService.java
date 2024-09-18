@@ -26,7 +26,7 @@ public class OrderService {
 
     private final WebClient.Builder webClientBuilder;
 
-    public void placeOrder(OrderRequest orderRequest) {
+    public String placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
@@ -38,11 +38,7 @@ public class OrderService {
         List<String> skuCodes = orderLineIteams.stream().map(OrderLineIteams::getSkuCode).toList();
 
         // Call inventory service and check inventory for profuct is in stock before placing an order
-        InventoryResponse[] inventoryResponses = webClientBuilder.build().get()
-                .uri("http://inventory-service/api/inventory", uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
-                .retrieve()
-                .bodyToMono(InventoryResponse[].class)
-                .block();
+        InventoryResponse[] inventoryResponses = webClientBuilder.build().get().uri("http://inventory-service/api/inventory", uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build()).retrieve().bodyToMono(InventoryResponse[].class).block();
 
         assert inventoryResponses != null;
 
@@ -60,6 +56,7 @@ public class OrderService {
 
         if (allProductisInStock) {
             orderRepository.save(order);
+            return "Order placed successfully!";
         } else {
             throw new IllegalArgumentException("Product is not available in stock, please try again later");
         }

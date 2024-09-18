@@ -31,7 +31,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
   endpoint:
     health:
       show-details: always
@@ -50,6 +50,22 @@ resilience4j:
           seconds: 5
         permitted-number-of-calls-in-half-open-state: 3
         automatic-transition-from-open-to-half-open-enabled: true
+
+# Resilience4J timeout properties
+  timelimiter:
+    instances:
+      inventory:
+        timeout-duration:
+          seconds: 3
+  retry:
+    instances:
+      inventory:
+        max-attempts: 3
+        wait-duration:
+          seconds: 5
+
+# Resilience4J retry properties
+
 
 
 
