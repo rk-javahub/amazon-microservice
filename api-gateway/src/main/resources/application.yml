@@ -43,4 +43,7 @@ spring:
           jwk-set-uri: http://localhost:8180/realms/spring-boot-microservices/protocol/openid-connect/certs
 
 
-
+management:
+  tracing:
+    sampling:
+      probability: 1.0

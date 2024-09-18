@@ -57,6 +57,7 @@ resilience4j:
       inventory:
         timeout-duration:
           seconds: 3
+# Resilience4J retry properties
   retry:
     instances:
       inventory:
@@ -64,11 +65,14 @@ resilience4j:
         wait-duration:
           seconds: 5
 
-# Resilience4J retry properties
 
 
 
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
 
 
 
