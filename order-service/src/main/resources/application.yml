@@ -22,11 +22,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-# To enable circuit breaker
-management:
-  health:
-    circuitbreakers:
-      enabled: true
   # To enable all actuator endpoints
   endpoints:
     web:
@@ -73,6 +68,11 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+# To enable circuit breaker
+  health:
+    circuitbreakers:
+      enabled: true
 
 
 
