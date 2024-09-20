@@ -13,6 +13,9 @@ spring:
     database: MYSQL
     hibernate:
       ddl-auto: update
+# kafka properties
+  kafka:
+    bootstrap-servers: localhost:9092
 
 server:
   port: 0
@@ -22,7 +25,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-  # To enable all actuator endpoints
+# To enable all actuator endpoints
   endpoints:
     web:
       exposure:
@@ -59,10 +62,6 @@ resilience4j:
         max-attempts: 3
         wait-duration:
           seconds: 5
-
-
-
-
 
 management:
   tracing:
