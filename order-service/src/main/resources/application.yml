@@ -15,12 +15,15 @@ spring:
       ddl-auto: update
   # kafka properties
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap:servers: localhost:9092
     template:
-      default-topic: notificationService
+      default-topic: notificationTopic
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      properties:
+#        spring.json.type.mapping:
+#        event: com.rkjavahub.event.OrderPlacedEvent
 
 server:
   port: 0
@@ -54,12 +57,12 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 3
         automatic-transition-from-open-to-half-open-enabled: true
 
-  # Resilience4J timeout properties
+# Resilience4J timeout properties
   timelimiter:
     instances:
       inventory:
         timeout-duration:
-          seconds: 3
+          seconds: 600
   # Resilience4J retry properties
   retry:
     instances:
@@ -77,9 +80,5 @@ management:
   health:
     circuitbreakers:
       enabled: true
-
-
-
-
 
 

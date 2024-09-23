@@ -1,16 +1,18 @@
+server:
+  port: 0
+
 spring:
   application:
     name: notification-service
 
-  server:
-    port: 0
+
 
   eureka:
     client:
       service-url:
         defaultZone: http://localhost:8761/eureka/
 
-# To enable all actuator endpoints
+    # To enable all actuator endpoints
     endpoints:
       web:
         exposure:
@@ -23,4 +25,19 @@ spring:
     tracing:
       sampling:
         probability: 1.0
+
+  # kafka properties
+  kafka:
+    bootstrap-servers: localhost:9092
+    template:
+      default-topic: notificationTopic
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+               packages: *
+      group-id: notificationId
 
