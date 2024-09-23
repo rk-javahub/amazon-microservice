@@ -13,9 +13,14 @@ spring:
     database: MYSQL
     hibernate:
       ddl-auto: update
-# kafka properties
+  # kafka properties
   kafka:
     bootstrap-servers: localhost:9092
+    template:
+      default-topic: notificationService
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 server:
   port: 0
@@ -25,7 +30,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-# To enable all actuator endpoints
+  # To enable all actuator endpoints
   endpoints:
     web:
       exposure:
@@ -49,13 +54,13 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 3
         automatic-transition-from-open-to-half-open-enabled: true
 
-# Resilience4J timeout properties
+  # Resilience4J timeout properties
   timelimiter:
     instances:
       inventory:
         timeout-duration:
           seconds: 3
-# Resilience4J retry properties
+  # Resilience4J retry properties
   retry:
     instances:
       inventory:
@@ -68,7 +73,7 @@ management:
     sampling:
       probability: 1.0
 
-# To enable circuit breaker
+  # To enable circuit breaker
   health:
     circuitbreakers:
       enabled: true
