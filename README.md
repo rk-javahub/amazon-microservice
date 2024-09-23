@@ -20,3 +20,8 @@ To check running containers - docker ps
 To check logs of broker - docker logs -f broker
 
 
+------  Remaining ------
+
+Notification service consumer throwing error regarding deserialization
+
+
