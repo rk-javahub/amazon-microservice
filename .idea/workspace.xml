@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a050ba4e-ec19-49b5-a9d2-3fee01e2d6ca" name="Changes" comment="Added" />
+    <list default="true" id="a050ba4e-ec19-49b5-a9d2-3fee01e2d6ca" name="Changes" comment="Readme updated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/rkjavahub/productservice/ProductServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/rkjavahub/productservice/ProductServiceApplication.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +57,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/rk-javahub/amazon-microservice.git&quot;,
-    &quot;accountId&quot;: &quot;10a41537-8648-4fc4-963c-dd95af448241&quot;
+    &quot;accountId&quot;: &quot;7300cbb9-75e5-492d-a5ca-10bf152554ff&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -78,6 +84,7 @@
     &quot;Application.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.DiscoveryServerApp.executor&quot;: &quot;Run&quot;,
     &quot;Application.InventoryServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NotificationServiceApp.executor&quot;: &quot;Run&quot;,
     &quot;Application.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Docker.docker-compose.yml.kafka-broker-1: Compose Deployment.executor&quot;: &quot;Run&quot;,
@@ -113,7 +120,7 @@
     &quot;Spring Boot.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/JAVA/rk-javahub GitHub/core-java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/JAVA/rk-javahub GitHub/kafka&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -142,6 +149,7 @@
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
+        <option value="Application" />
         <option value="CompoundRunConfigurationType" />
         <option value="Java Scratch" />
         <option value="MavenRunConfiguration" />
@@ -149,7 +157,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.NotificationServiceApp | #1">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.rkjavahub.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -176,8 +184,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NotificationServiceApp | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/NotificationServiceApp.http" requestIdentifier="#1" runType="Run single request">
-      <method v="2" />
+    <configuration name="InventoryServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.rkjavahub.inventoryservice.InventoryServiceApplication" />
+      <module name="inventory-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rkjavahub.inventoryservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.rkjavahub.notificationservice.NotificationServiceApp" />
+      <module name="notification-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rkjavahub.notificationservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="order-service" />
@@ -246,55 +277,27 @@
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="envFilePath" value="" />
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.kafka-broker-1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="kafka-broker-1" />
-            </list>
-          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.InventoryServiceApplication" />
+      <item itemvalue="Application.NotificationServiceApp" />
       <item itemvalue="Application.ApiGatewayApplication" />
       <item itemvalue="Application.DiscoveryServerApp" />
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.kafka-broker-1: Compose Deployment" />
-      <item itemvalue="HTTP Request.NotificationServiceApp | #1" />
-      <item itemvalue="Spring Boot.ApiGatewayApplication" />
-      <item itemvalue="Spring Boot.DiscoveryServerApp" />
-      <item itemvalue="Spring Boot.InventoryServiceApplication" />
-      <item itemvalue="Spring Boot.NotificationServiceApp" />
-      <item itemvalue="Spring Boot.OrderServiceApplication" />
-      <item itemvalue="Spring Boot.ProductServiceApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.NotificationServiceApp | #1" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.kafka-broker-1: Compose Deployment" />
+        <item itemvalue="Application.NotificationServiceApp" />
+        <item itemvalue="Application.InventoryServiceApplication" />
         <item itemvalue="Application.ApiGatewayApplication" />
         <item itemvalue="Application.DiscoveryServerApp" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -318,6 +321,11 @@
       <workItem from="1726811312233" duration="13180000" />
       <workItem from="1727064344335" duration="73000" />
       <workItem from="1727088411374" duration="8041000" />
+      <workItem from="1727097335795" duration="197000" />
+      <workItem from="1727240459800" duration="140000" />
+      <workItem from="1727407499412" duration="27000" />
+      <workItem from="1727804975832" duration="3994000" />
+      <workItem from="1728276468064" duration="14000" />
     </task>
     <task id="LOCAL-00001" summary="New project">
       <option name="closed" value="true" />
@@ -359,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718032074381</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Readme updated">
+      <option name="closed" value="true" />
+      <created>1727097511406</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727097511406</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,24 +397,25 @@
     <MESSAGE value="Added code" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Inventory Service response updated to List from boolean" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inventory Service response updated to List from boolean" />
+    <MESSAGE value="Readme updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>
-          <line>56</line>
+          <line>58</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>
-          <line>61</line>
+          <line>63</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>
-          <line>44</line>
+          <line>46</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
@@ -406,17 +423,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>
-          <line>48</line>
+          <line>50</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>
-          <line>49</line>
+          <line>51</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/order-service/src/main/java/com/rkjavahub/orderservice/service/OrderService.java</url>
-          <line>54</line>
+          <line>56</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

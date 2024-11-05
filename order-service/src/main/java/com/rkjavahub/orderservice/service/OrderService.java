@@ -10,6 +10,7 @@ import com.rkjavahub.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,6 +18,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor
@@ -61,7 +63,14 @@ public class OrderService {
         if (allProductisInStock) {
             orderRepository.save(order);
             System.out.println("Calling notification-service");
-            kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
+            CompletableFuture<SendResult<String, OrderPlacedEvent>> sendResultCompletableFuture = kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
+            sendResultCompletableFuture.whenComplete((result, exception) -> {
+                if (exception == null) {
+                    System.out.println("Sent messsage : [" + result + " ] with offset : [" + result.getRecordMetadata().offset() + "]");
+                } else {
+                    System.out.println("Unable to send message due to exception : " + exception.getMessage());
+                }
+            });
             System.out.println("notification-service call ended");
             return "Order placed successfully!";
         } else {

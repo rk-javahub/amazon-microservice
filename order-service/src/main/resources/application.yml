@@ -21,9 +21,9 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-#      properties:
-#        spring.json.type.mapping:
-#        event: com.rkjavahub.event.OrderPlacedEvent
+      properties:
+        spring.json.type.mapping:
+        event: com.rkjavahub.event.OrderPlacedEvent
 
 server:
   port: 0
