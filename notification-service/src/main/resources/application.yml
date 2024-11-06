@@ -39,7 +39,10 @@ spring:
         event: com.rkjavahub.notificationservice.OrderPlacedEvent
         spring:
           json:
+            add:
+              type:
+                headers: false
             trusted:
-               packages: "*"
+              packages: "*"
       group-id: notificationId
 

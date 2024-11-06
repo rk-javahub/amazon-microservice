@@ -1,12 +1,22 @@
 package com.rkjavahub.event;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.context.ApplicationEvent;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class OrderPlacedEvent {
+import java.time.Clock;
+
+
+@Getter
+@Setter
+public class OrderPlacedEvent extends ApplicationEvent {
     private String orderId;
+
+    public OrderPlacedEvent(Object source) {
+        super(source);
+    }
+
+    public OrderPlacedEvent(Object source, Clock clock) {
+        super(source, clock);
+    }
 }

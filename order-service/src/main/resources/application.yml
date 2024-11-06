@@ -24,6 +24,11 @@ spring:
       properties:
         spring.json.type.mapping:
         event: com.rkjavahub.event.OrderPlacedEvent
+        spring:
+          json:
+            trusted:
+              packages: "*"
+          group-id: notificationId
 
 server:
   port: 0
