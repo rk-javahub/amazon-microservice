@@ -12,7 +12,7 @@ public class NotificationServiceApp {
         SpringApplication.run(NotificationServiceApp.class, args);
     }
 
-    @KafkaListener(topics = "notificationTopic")
+    @KafkaListener(topics = "notificationTopic",groupId = "notificationId")
     public void handleNotification(OrderPlacedEvent orderPlacedEvent) {
         // Add logic for send mail
         log.info("Notifiaction sent successfully for order id - {} ", orderPlacedEvent.getOrderId());
