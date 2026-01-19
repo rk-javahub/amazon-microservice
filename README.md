@@ -1,4 +1,4 @@
-Microservices app for E-Commerce domain
+Microservices app for E-Commerce domain (https://www.youtube.com/watch?v=AK6Rf_yjvI0)
 Modules
 1. product-service
 2. order-service
