@@ -43,7 +43,7 @@ public class OrderService {
         // Getting skucodes from orderLineIteams
         List<String> skuCodes = orderLineIteams.stream().map(OrderLineIteams::getSkuCode).toList();
 
-        // Call inventory service and check inventory for profuct is in stock before placing an order
+        // Call inventory service and check inventory for product is in stock before placing an order
         InventoryResponse[] inventoryResponses = webClientBuilder.build().get().uri("http://inventory-service/api/inventory", uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build()).retrieve().bodyToMono(InventoryResponse[].class).block();
 
         assert inventoryResponses != null;
