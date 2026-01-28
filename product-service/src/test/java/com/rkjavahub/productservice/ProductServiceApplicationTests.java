@@ -4,15 +4,14 @@ package com.rkjavahub.productservice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rkjavahub.productservice.dto.ProductRequest;
 import com.rkjavahub.productservice.repository.ProductRepository;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.Ordered;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -26,25 +25,36 @@ import java.math.BigDecimal;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProductServiceApplicationTests {
+
     @Container
-    static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:4.4.2");
+    static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:7.0.5");
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
-
     @Autowired
     private ProductRepository productRepository;
+
+    @LocalServerPort
+    private Integer port;
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {
         dynamicPropertyRegistry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
     }
+
+    @BeforeEach
+    void setup() {
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port=port;
+    }
+
+
 
     @Test
     @DisplayName("Should create new product")

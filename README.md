@@ -1,8 +1,13 @@
-Microservices app for E-Commerce domain (https://www.youtube.com/watch?v=AK6Rf_yjvI0)
-Modules
-1. product-service
-2. order-service
-3. inventory-service
+Microservices app for E-Commerce domain (https://www.youtube.com/watch?v=yn_stY3HCr8&list=PLSVW22jAG8pBnhAdq9S8BpLnZ0_jVBj0c&index=26)
+---------------------------------------------------------------------------------------------------------------------------------
+
+Modules - Services we are going to build
+1. product-service - Create and view Product, act as product catalog
+2. order-service - Can order product
+3. inventory-service - can check if product is in stock or not
+4. Notification service - Can send Notification, after order is placed
+
+![img.png](img.png)
 
 
 ---  Keyclock ---
